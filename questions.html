@@ -1,0 +1,55 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f3eee4"><title>Вопросная — КСЮША.OS</title><link rel="stylesheet" href="style.css"></head><body>
+<header class="topbar">
+  <div class="shell topbar-in">
+    <a class="brand" href="index.html">КСЮША<span>.OS</span></a>
+    <nav class="nav">
+      <a href="index.html">главная</a>
+      <a href="permissions.html">разрешения</a>
+      <a href="questions.html">вопросы</a>
+      <a href="dossier.html">досье</a>
+      <a href="compliments.html">комплименты</a>
+    </nav>
+    <div class="status"><span class="status-dot"></span> дядя онлайн</div>
+  </div>
+</header>
+
+<main class="shell">
+<section class="page-hero"><div class="eyebrow">лаборатория бессмысленных исследований</div><h1>Тупые вопросы. <span class="marker">Много.</span></h1><p>Сюда дядя складывает вопросы, которым не нашлось нормального применения.</p></section>
+<section class="grid">
+  <article class="card yellow big">
+    <div class="kicker">генератор</div>
+    <div class="quote-card"><div class="quote" id="bigQ">Ты бы дружила со мной, если бы я был табуреткой?</div><div class="by">вопрос № совершенно неважно</div></div>
+    <div class="stack"><button class="btn yellow" onclick="nextQ()">другой вопрос</button><button class="btn paper" onclick="react('да')">да</button><button class="btn paper" onclick="react('нет')">нет</button><button class="btn red" onclick="react('что')">дядя, ты нормальный?</button></div>
+    <div class="output" id="qReact">Ответ пока не зарегистрирован.</div>
+  </article>
+  <article class="card blue">
+    <div class="kicker">что бы ты выбрала</div>
+    <h2>Сложнейший выбор</h2>
+    <div class="choice-grid">
+      <button class="btn paper" onclick="chooseThis(this)">100 маленьких Абубакиров</button>
+      <button class="btn paper" onclick="chooseThis(this)">1 огромный Абубакир</button>
+      <button class="btn paper" onclick="chooseThis(this)">выключить дядю на 10 минут</button>
+      <button class="btn paper" onclick="chooseThis(this)">дать дяде ещё 100 вопросов</button>
+    </div>
+    <div class="output" id="choiceOut">Выбор будет осуждён системой независимо от результата.</div>
+  </article>
+  <article class="card green">
+    <div class="kicker">оракул</div>
+    <h2>Задай вопрос сайту</h2>
+    <div class="form-stack"><input type="text" id="oracleInput" placeholder="Например: дядя сегодня прав?"><button class="btn green" onclick="oracle()">спросить</button></div>
+    <div class="output" id="oracleOut">Система готова отвечать без доказательств.</div>
+  </article>
+</section>
+</main>
+<script src="app.js"></script>
+<script>
+const qs=["Если пингвин наденет носки, он станет серьёзнее?","Ты бы дружила со мной, если бы я был табуреткой?","Если кошка легла на клавиатуру — она программист?","Если спор закончился словом «ладно», кто победил?","Если я старше на полгода, мне положена пенсия раньше?","Если сказать «понятно и ясно» три раза — появляется нотариус?","Кто сильнее: очень злая Ксюша или очень упрямый дядя?","Если дядя спросил разрешение задать вопрос, он уже нарушил процедуру?","Если ты выиграла спор, но дядя не признал поражение, считается ли это победой?","Можно ли запретить человеку умничать административным решением?","Ты бы выбрала возможность читать мысли или кнопку отключения дяди?"];
+function nextQ(){document.getElementById("bigQ").textContent=rand(qs);state.questions++;save();unlockAchievement("qPage","Наука расширена","Ещё один вопрос был выдан в мир.")}
+function react(v){document.getElementById("qReact").textContent=v==="да"?"Ответ «да» принят. Даже если вопрос был про табуретку.":v==="нет"?"Ответ «нет» принят. Дядя готовит более убедительную ерунду.":"Проверка показала: нормальность дяди не подтверждена."}
+function chooseThis(btn){document.getElementById("choiceOut").textContent=`Выбрано: «${btn.textContent}». Система осуждает, но уважает решительность.`;unlockAchievement("choice","Выбор сделан","Последствия будут обсуждаться на семейном совете дяди.")}
+function oracle(){const q=document.getElementById("oracleInput").value.trim();if(!q){document.getElementById("oracleOut").textContent="Сначала нужен вопрос, малумазель.";return}document.getElementById("oracleOut").textContent=rand(["Безусловно. Источник: дядя.","Нет. Даже система тут против.","С вероятностью 51%. Практически наука.","Понятно и ясно. Следующий вопрос.","Система решила не вмешиваться в этот спор.","Ответ скрыт из соображений безопасности дяди."])}
+</script>
+<footer class="footer"><div class="shell">КСЮША.OS · версия «дядя опять что-то придумал» · дружба: да · романтика: нет · дурка: стабильно</div></footer>
+<div class="achievement" id="achievement"><div class="title">Достижение</div><div class="desc">Описание</div></div>
+
+</body></html>
